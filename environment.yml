@@ -1,0 +1,10 @@
+name: workshop
+channels:
+  - conda-forge
+dependencies:
+  - jupyterlab
+  - napari
+  - pip
+  - pip:
+    - jupyter-book
+    - napari-animation
