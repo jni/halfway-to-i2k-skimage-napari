@@ -1,0 +1,39 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Image analysis and visualization in Python with scikit-image, napari, and friends
+author: Juan Nunez-Iglesias, Kira Evans, Lars Grüter, and previous contributors
+logo: logo.ico
+
+# Only build files in the table of contents.
+only_build_toc_files: true
+
+launch_buttons:
+  notebook_interface : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: "cache"
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: image-analysis-23.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/scipy-2023-image-analysis/tutorial  # Online location of your book
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+  path_to_book: "tutorial"  # A path to your book's folder, relative to the repository root.
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: false
+  use_repository_button: true
