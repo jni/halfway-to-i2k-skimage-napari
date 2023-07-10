@@ -69,7 +69,7 @@ cat[10:110, 10:110, :] = [255, 0, 0]  # [red, green, blue]
 plt.imshow(cat);
 ```
 
-Images can also include transparent regions by adding a 4th dimension, called an *alpha layer*.
+Images can also include transparent regions by adding a 4th channel, called an *alpha layer*.
 
 +++
 
@@ -238,7 +238,7 @@ for i, animal in enumerate(animals):
     print('The animal in position {} is {}'.format(i, animal))
 ```
 
-## <span class="exercize">Exercise: draw the letter H</span>
+## <span class="exercize">Exercise 1: draw the letter H</span>
 
 Define a function that takes as input an RGB image and a pair of coordinates (row, column), and returns a copy with a green letter H overlaid at those coordinates. The coordinates point to the top-left corner of the H.
 
@@ -267,7 +267,7 @@ cat_H = draw_H(cat, (50, -50))
 plt.imshow(cat_H);
 ```
 
-## <span class="exercize">Exercise: visualizing RGB channels</span>
+## <span class="exercize">Exercise 2: visualizing RGB channels</span>
 
 Display the different color channels of the image along (each as a gray-scale image).  Start with the following template:
 
@@ -284,28 +284,27 @@ r = ... # FIXME: grab channel from image...
 g = ... # FIXME
 b = ... # FIXME
 
-if ... not in (r, g, b):
-    # --- display the image and r, g, b channels ---
-    f, axes = plt.subplots(1, 4, figsize=(16, 5))
+# --- display the image and r, g, b channels ---
+f, axes = plt.subplots(1, 4, figsize=(16, 5))
 
-    for ax in axes:
-        ax.axis('off')
+for ax in axes:
+    ax.axis('off')
 
-    (ax_r, ax_g, ax_b, ax_color) = axes
+(ax_r, ax_g, ax_b, ax_color) = axes
 
-    ax_r.imshow(r, cmap='gray')
-    ax_r.set_title('red channel')
+ax_r.imshow(r, cmap='gray')
+ax_r.set_title('red channel')
 
-    ax_g.imshow(g, cmap='gray')
-    ax_g.set_title('green channel')
+ax_g.imshow(g, cmap='gray')
+ax_g.set_title('green channel')
 
-    ax_b.imshow(b, cmap='gray')
-    ax_b.set_title('blue channel')
+ax_b.imshow(b, cmap='gray')
+ax_b.set_title('blue channel')
 
-    # --- Here, we stack the R, G, and B layers again
-    #     to form a color image ---
-    ax_color.imshow(np.stack([r, g, b], axis=2))
-    ax_color.set_title('all channels');
+# --- Here, we stack the R, G, and B layers again
+#     to form a color image ---
+ax_color.imshow(np.stack([r, g, b], axis=2))
+ax_color.set_title('all channels');
 ```
 
 Now, take a look at the following R, G, and B channels.  How would their combination look? (Write some code to confirm your intuition.)
@@ -332,7 +331,7 @@ for (ax, channel) in zip(axes, [red, green, blue]):
     ax.axis('off')
 ```
 
-## Exercise: Convert to grayscale ("black and white")
+## Exercise 3: Convert to grayscale ("black and white")
 
 The *relative luminance* of an image is the intensity of light coming from each point. Different colors contribute differently to the luminance: it's very hard to have a bright, pure blue, for example. So, starting from an RGB image, the luminance is given by:
 
@@ -356,13 +355,12 @@ image = img_as_float(io.imread('./data/balloon.jpg'))
 gray = color.rgb2gray(image)
 my_gray = ...  # FIXME
 
-if my_gray is not ...:
-    # --- display the results ---
-    f, (ax0, ax1) = plt.subplots(1, 2, figsize=(10, 6))
+# --- display the results ---
+f, (ax0, ax1) = plt.subplots(1, 2, figsize=(10, 6))
 
-    ax0.imshow(gray, cmap='gray')
-    ax0.set_title('skimage.color.rgb2gray')
+ax0.imshow(gray, cmap='gray')
+ax0.set_title('skimage.color.rgb2gray')
 
-    ax1.imshow(my_gray, cmap='gray')
-    ax1.set_title('my rgb2gray')
+ax1.imshow(my_gray, cmap='gray')
+ax1.set_title('my rgb2gray')
 ```
