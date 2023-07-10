@@ -1,0 +1,15 @@
+jupyterlab
+jupytext
+notebook
+matplotlib
+scikit-image==0.21.0
+jupyter-book==0.15.1
+pooch==1.7.0
+scikit-learn==1.2.2
+ipywidgets==8.0.7
+seaborn==0.12.2
+napari==0.4.18
+pyqt5
+cookiecutter
+cellpose
+napari-animation
