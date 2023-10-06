@@ -865,7 +865,7 @@ Notice how the edges look more continuous in the smoothed image.
 
 +++
 
-## Exercise 5: the simplest neural network
+## Exercise 5: the littlest neural network
 
 Let's pretend we have an image and a "ground truth" image of what we want to detect:
 
