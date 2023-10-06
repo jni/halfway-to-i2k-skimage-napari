@@ -1,4 +1,4 @@
-name: image-analysis-23
+name: i2k-2023
 channels:
   - conda-forge
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
   - jupytext
   - notebook
   - matplotlib
-  - scikit-image=0.21.0
+  - scikit-image=0.22.0
   - jupyter-book=0.15.1
   - pooch=1.7.0
   - scikit-learn=1.2.2
@@ -17,5 +17,4 @@ dependencies:
   - napari=0.4.18
   - cookiecutter
   - cellpose
-  - pip:
-    - napari-animation
+  - napari-animation
