@@ -8,22 +8,18 @@ fundamentals of working with images in scientific Python. The tutorial will be
 split into four parts, of about 45 minutes each, plus breaks.
 
 Use the sidebar to navigate to the materials, and
-[fork this repo](https://github.com/scipy-2023-image-analysis/tutorial) if
+[fork this repo](https://github.com/jni/halfway-to-i2k-skimage-napari) if
 you want to create your own workshop.
 
 ```{tip}
-If you run into any trouble, head over to our Zulip servers where we can help you get
+If you run into any trouble, head over to our Zulip server where we can help you get
 unstuck!
-- https://skimage.zulipchat.com
 - https://napari.zulipchat.com
 ```
 
 ## Instructors
 
-The instructors for this workshop are
-- Juan Nunez-Iglesias
-- Kira Evans
-- Lars Grüter
+The instructor for this workshop is Juan Nunez-Iglesias (Monash University).
 
 
 ## Goals
@@ -37,5 +33,5 @@ if they need it.
 ## Pre-tutorial setup
 
 So that we can best utilize our time together, please [download this
-repository](https://github.com/scipy-2023-image-analysis/tutorial#readme), then
+repository](https://github.com/jni/halfway-to-i2k-skimage-napari#readme), then
 [install the required dependencies](install-dependencies).
