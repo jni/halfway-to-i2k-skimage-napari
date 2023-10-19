@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.7
+    jupytext_version: 1.15.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -22,7 +22,7 @@ kernelspec:
 
 --------------
 
-## Separating an image into one or more regions of interest.
+## "Segmenting" means dividing an image into two or more regions of interest.
 
 Everyone has heard or seen Photoshop or a similar graphics editor take a person from one image and place them into another.  The first step of doing this is *identifying where that person is in the source image*.
 
@@ -103,7 +103,8 @@ labels_as_image_layer = viewer.add_image(
 
 - zoom with scroll, pan with click and drag
 - try clicking on the 👁️ icon on each layer in the layer list to make them invisible or visible again
-- try alt-clicking on the icon: this makes every other layer invisible
+- ~~try alt-clicking on the icon: this makes every other layer invisible~~ (coming soon to a viewer near you)
+- try selecting different layers in the layer list, hovering the cursor over the image, and looking at the *status bar* on the bottom left
 - try changing the opacity, colormap, or interpolation on a layer
 - try turning on "grid mode", from the group of buttons at the bottom-left of the viewer.
 - *select* the labels layer, click on the paintbrush tool, and tweak the segmentation where the two labels meet.
