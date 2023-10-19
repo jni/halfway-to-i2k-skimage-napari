@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.14.6
+    jupytext_version: 1.15.2
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -24,7 +24,7 @@ kernelspec:
 
 +++ {"slideshow": {"slide_type": "notes"}}
 
-Filtering is one of the most basic and common image operations in image processing. You can filter an image to remove noise or to enhance features; the filtered image could be the desired result or just a preprocessing step. Regardless, filtering is an important topic to understand.
+Filtering is one of the most basic and common image operations in image processing. You can filter an image to remove noise or to enhance features, and the filtered image might be the desired result or just a preprocessing step. Filtering is even the foundation of all those fancy deep convolutional networks you keep hearing about. So, even if you're not using it directly, filtering is an important topic to understand.
 
 +++ {"slideshow": {"slide_type": "fragment"}}
 
@@ -43,7 +43,7 @@ import numpy as np
 
 The "local" in local filtering simply means that a pixel is adjusted by values in some surrounding neighborhood. These surrounding elements are identified or weighted based on a "footprint", "structuring element", or "kernel".
 
-Let's go to back to basics and look at a 1D step-signal
+Let's start at the very basics and look not at an image, but at a 1D step-signal.
 
 ```{code-cell} ipython3
 ---
@@ -60,7 +60,7 @@ ax.margins(y=0.1)
 
 +++ {"slideshow": {"slide_type": "notes"}}
 
-Next we add some noise to this signal:
+Filtering is all well and easy for such artificial signals, but real signals have noise — let's add some to this signal to make things interesting:
 
 ```{code-cell} ipython3
 ---
@@ -68,7 +68,7 @@ slideshow:
   slide_type: fragment
 ---
 # Just to make sure we all see the same results
-rng = np.random.default_rng(44)
+rng = np.random.default_rng(1)
 noise = rng.normal(0, 0.35, step_signal.shape)
 
 noisy_signal = step_signal + noise
@@ -608,7 +608,7 @@ We are actually going to be using the pattern of plotting multiple images side b
 ```{code-cell} ipython3
 from skimage import img_as_float
 
-def imshow_all(*images, titles=None):
+def imshow_all(*images, titles=None, cmap='gray'):
     images = [img_as_float(img) for img in images]
 
     if titles is None:
@@ -621,7 +621,7 @@ def imshow_all(*images, titles=None):
     fig, axes = plt.subplots(nrows=1, ncols=ncols,
                              figsize=(width, height))
     for ax, img, label in zip(axes.ravel(), images, titles):
-        ax.imshow(img, vmin=vmin, vmax=vmax, cmap="gray")
+        ax.imshow(img, vmin=vmin, vmax=vmax, cmap=cmap)
         ax.set_title(label)
 ```
 
@@ -706,8 +706,8 @@ slideshow:
   slide_type: fragment
 ---
 size = 20
-structuring_element = np.ones((3*size, 3*size))
-smooth_mean = filters.rank.mean(image, structuring_element)
+footprint = np.ones((3*size, 3*size))
+smooth_mean = filters.rank.mean(image, footprint)
 smooth_gaussian = filters.gaussian(image, size)
 titles = ['mean', 'gaussian']
 imshow_all(smooth_mean, smooth_gaussian, titles=titles)
@@ -715,7 +715,7 @@ imshow_all(smooth_mean, smooth_gaussian, titles=titles)
 
 +++ {"slideshow": {"slide_type": "notes"}}
 
-(Above, we've tweaked the size of the structuring element used for the mean filter and the standard deviation of the Gaussian filter to produce an approximately equal amount of smoothing in the two results.)
+(Above, we've tweaked the size of the footprint used for the mean filter and the standard deviation of the Gaussian filter to produce an approximately equal amount of smoothing in the two results.)
 
 +++
 
@@ -901,7 +901,7 @@ As you can see from our earlier examples, mean and Gaussian filters smooth an im
 
 +++ {"slideshow": {"slide_type": "notes"}}
 
-The median filter is the classic edge-preserving filter. As the name implies, this filter takes a set of pixels (i.e. the pixels within a kernel or "structuring element") and returns the median value within that neighborhood. Because regions near a sharp edge will have many dark values and many light values (but few values in between) the median at an edge will most likely be either light or dark, rather than some value in between. In that way, we don't end up with edges that are smoothed.
+The median filter is the classic edge-preserving filter. As the name implies, this filter takes a set of pixels (i.e. the pixels within a kernel aka "structuring element" or "footprint") and returns the median value within that neighborhood. Because regions near a sharp edge will have many dark values and many light values (but few values in between) the median at an edge will most likely be either light or dark, rather than some value in between. In that way, we don't end up with edges that are smoothed.
 
 ```{code-cell} ipython3
 ---
@@ -909,8 +909,8 @@ slideshow:
   slide_type: fragment
 ---
 from skimage.morphology import disk
-neighborhood = disk(radius=1)  # "selem" is often the name used for "structuring element"
-median = filters.rank.median(pixelated, neighborhood)
+footprint = disk(radius=1)
+median = filters.rank.median(pixelated, footprint)
 titles = ['image', 'gaussian', 'median']
 imshow_all(pixelated, smooth, median, titles=titles)
 ```
@@ -940,4 +940,4 @@ Notice how the edges of coins are preserved after using the median filter.
 
 ## Further reading
 
-See the scikit-image [filters API documentation](https://scikit-image.org/docs/dev/api/skimage.filters.html) for further reading. The scikit-image [restoration module](https://scikit-image.org/docs/dev/api/skimage.restoration.html) also includes sophisticated modules for image denoising and deconvolution.
+See the scikit-image [filters API documentation](https://scikit-image.org/docs/dev/api/skimage.filters.html) and the [Filters section of the scipy.ndimage documentation](https://docs.scipy.org/doc/scipy/reference/ndimage.html#filters) for further reading. The scikit-image [restoration module](https://scikit-image.org/docs/dev/api/skimage.restoration.html) also includes sophisticated modules for image denoising and deconvolution.
